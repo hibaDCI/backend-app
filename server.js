@@ -23,6 +23,11 @@ mongoose
 /*express and cors middlewares */
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
+const corsOption = {
+  origin: ["http://localhost:3000", "https://superuser.onrender.com"],
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+};
 app.use(cors());
 app.use(cookieParser());
 //! use passport and initialize it in our server
