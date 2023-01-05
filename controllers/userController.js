@@ -64,7 +64,12 @@ export const login = async (req, res, next) => {
       const token = await authToken.generateToken(user);
       // send it with http
       res
-        .cookie("access_token", token, {httpOnly: true})
+        .cookie("access_token", token, {
+          httpOnly: true,
+          maxAge: 3600000 * 5,
+          secure: true,
+          sameSite: "none",
+        })
         .json({msg: "you logged in successfully"});
       return;
     }
